@@ -17,8 +17,6 @@ namespace Crawler2.Models
         public string Url { get; set; }
         public IEnumerable<string> Images { get; set; }
 
-        //public Dictionary<string, int> WordCount { get; set; }
-
         public IEnumerable<Word> Words { get; set; }
     }
 }
