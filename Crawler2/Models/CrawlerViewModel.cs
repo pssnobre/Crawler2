@@ -9,6 +9,7 @@ namespace Crawler2.Models
         public CrawlerViewModel()
         {
             Images = new List<string>();
+            Words = new List<Word>();
         }
 
         [Required(ErrorMessage = "Url is required.")]
