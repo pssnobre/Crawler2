@@ -1,0 +1,70 @@
+﻿@model Crawler2.Models.CrawlerViewModel
+
+@{
+    ViewBag.Title = "Code Challenge";
+}
+
+<div class="jumbotron">
+    <h1>Code Challenge</h1>
+    <p class="lead">Type the url to get the images and words.</p>
+</div>
+
+
+<div class="row">
+    @using (Html.BeginForm("Submit", "Home", FormMethod.Post))
+    {
+        <div>
+            <label for="Url">Url:</label>
+            @Html.TextBoxFor(model => model.Url)
+            @Html.ValidationMessageFor(model => model.Url, "", new { @class = "text-danger" })
+        </div>
+        <div>
+            <input type="submit" value="Submit" />
+        </div>
+        <div>
+            <a href="/Home/Index">Clear</a>
+        </div>
+    }
+</div>
+
+@if (Model.Images.Any())
+{
+
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Image Gallery</h2>
+
+        <div class="row">
+            @foreach (var item in Model.Images)
+            {
+                <div class="col-md-4 galery-picture">
+                    <a href="@item" data-lightbox="galeria">
+                        <img src="@item" class="img-fluid" alt="@item">
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+}
+@if (Model.Words.Any())
+{
+    <h2 class="text-center mb-4">Words</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Word</th>
+                <th scope="col">Occurrence</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Words)
+            {
+                <tr class="@(item.IsBold ? "bold-top-10" : string.Empty)">
+                    <td>@item.WordDescription</td>
+                    <td>@item.WordCount</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
